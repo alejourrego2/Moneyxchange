@@ -30,7 +30,7 @@ namespace Business.Managers
 
             HttpResponseMessage result;
 
-            var proxy = new WebProxy()
+            /*var proxy = new WebProxy()
             {
                 Address = new Uri("http://10.150.150.20:8080"),
                 UseDefaultCredentials = true,
@@ -41,7 +41,8 @@ namespace Business.Managers
                 Proxy = proxy,
             };
 
-            using (HttpClient client = new HttpClient(httpClientHandler, true))
+            using (HttpClient client = new HttpClient(httpClientHandler, true))*/
+            using (HttpClient client = new HttpClient())
             {
                 result = await client.GetAsync(url);
                 result.EnsureSuccessStatusCode();
