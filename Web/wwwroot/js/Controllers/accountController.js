@@ -5,10 +5,7 @@
         $scope.errorMessage = '';
 
         this.$onInit = function () {
-            document.getElementById("userName").keypress(function (e) {
-                if (e.keyCode == 13)
-                    document.getElementById(('#login')).click();
-            });
+            
         }
 
         $scope.reset = function () {
@@ -26,7 +23,7 @@
                             window.location = response.data.urlToRedirect;
                         }
                         else {
-                            $scope.errorMessage = 'User name and/or password are not valid.';
+                            $scope.errorMessage = 'Not valid credentials';
                         }
                     }
                 }, function (error) {
@@ -37,6 +34,15 @@
         $scope.change = function () {
             if ($scope.errorMessage && $scope.errorMessage.length) {
                 $scope.errorMessage = '';
+            }
+        }
+
+        $scope.defaultSubmit = function (e) {
+            if (e.keyCode == 13) {
+                var elementScope = angular.element(document.getElementById('loginForm')).scope();
+                if (!elementScope.loginForm.$invalid) {
+                    $scope.login();
+                }
             }
         }
     }

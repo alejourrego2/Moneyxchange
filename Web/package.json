@@ -2,5 +2,10 @@
   "version": "1.0.0",
   "name": "asp.net",
   "private": true,
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "del": "^4.1.1"
+  }
 }

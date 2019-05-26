@@ -1,4 +1,4 @@
-﻿app.factory("LoginService", function ($http) {
+﻿app.factory("LoginService", ['$http', function ($http) {
     return {
         login: function (userName, password) {
             var data = { userName: userName, password: password };
@@ -12,4 +12,4 @@
             return $http.post("/Account/Login", JSON.stringify(data), config);
         }
     }
-});
+}]);

@@ -1,4 +1,4 @@
-﻿app.factory("ExchangeService", function ($http) {
+﻿app.factory("ExchangeService", ['$http', function ($http) {
     return {
         exchangeCurrency: function (value, fromCurrency, targetCurrency) {
             var data = { value: value, fromCurrency: fromCurrency, targetCurrency: targetCurrency };
@@ -12,4 +12,4 @@
             return $http.post("/Exchange/ExchangeCurrency", JSON.stringify(data), config);
         }
     }
-});
+}]);

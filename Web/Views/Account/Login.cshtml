@@ -3,54 +3,62 @@
     ViewData["Title"] = "Login";
 }
 @section Scripts{
-    <script type="text/javascript" src='~/js/Controllers/accountController.js'></script>
-    <script type="text/javascript" src="~/js/Services/loginService.js"></script>
+    <environment include="Development">
+        <script type="text/javascript" src='~/js/Controllers/accountController.js'></script>
+        <script type="text/javascript" src="~/js/Services/loginService.js"></script>
+    </environment>
 }
-<div class="container" ng-controller="AccountController">
-    <div class="row">
-        <div class="col-md-3">
-            <h2><strong>Login Page </strong></h2><br />
-            <form name="loginForm">
-                <div class="form-group"
-                     ng-class="{ 'has-error' : loginForm.userName.$invalid && !loginForm.userName.$pristine }">
-                    <label>User Name</label>
-                    <input type="text"
-                           class="form-control"
-                           id="userName"
-                           name="userName"
-                           placeholder="Enter user name"
-                           ng-model="userName" 
-                           ng-change="change()"
-                           required>
-                    <p ng-show="loginForm.userName.$invalid && !loginForm.userName.$pristine"
-                       class="help-block">Your user name is required.</p>
-                </div>
-                <div class="form-group"
-                     ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-                    <label>Password</label>
-                    <input type="password"
-                           class="form-control"
-                           name="password"
-                           id="password"
-                           placeholder="Password"
-                           ng-change="change()"
-                           ng-model="password" 
-                           required>
-                    <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"
-                       class="help-block">Your password is required.</p>
-                </div>
+
+    <div class="login-form" ng-controller="AccountController">
+        <form name="loginForm" id="loginForm">
+            <h2 class="text-center">Log in</h2>
+            <div class="form-group"
+                 ng-class="{ 'has-error' : loginForm.userName.$invalid && !loginForm.userName.$pristine }">
+                <input type="text"
+                       class="form-control"
+                       id="userName"
+                       name="userName"
+                       placeholder="Enter user name"
+                       ng-model="userName"
+                       ng-change="change()"
+                       ng-keypress="defaultSubmit($event)"
+                       required>
+                <p ng-show="loginForm.userName.$invalid && !loginForm.userName.$pristine"
+                   class="help-block">Your user name is required.</p>
+            </div>
+            <div class="form-group"
+                 ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       id="password"
+                       placeholder="Password"
+                       ng-change="change()"
+                       ng-model="password"
+                       ng-keypress="defaultSubmit($event)"
+                       required>
+                <p ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"
+                   class="help-block">Your password is required.</p>
+            </div>
+            <div class="form-group">
                 <div class="form-group has-error"
                      ng-if="errorMessage && errorMessage.length">
                     <p class="help-block">{{ errorMessage }}</p>
                 </div>
                 <div class="form-check">
                     <button id="login"
-                            type="button" 
+                            type="button"
                             class="btn btn-primary"
                             ng-click="login()"
-                            ng-disabled="loginForm.$invalid">Login</button>
+                            ng-disabled="loginForm.$invalid">
+                        Sign Up
+                    </button>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="clearfix">
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+                <a href="#" class="pull-right">Forgot Password?</a>
+            </div>
+        </form>
+        <p class="text-center"><a href="#">Create an Account</a></p>
     </div>
-</div>
